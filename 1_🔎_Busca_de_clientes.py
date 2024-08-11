@@ -13,6 +13,9 @@ access_token_assinas = st.secrets["access_token_assinas"]
 url_supabase = st.secrets["url_supabase"]
 key_supabase = st.secrets["key_supabase"]
 
+# Initialize Supabase client
+supabase: Client = create_client(url_supabase, key_supabase)
+
 headers_hubspot = {
     'Content-Type': 'application/json',
     'Authorization': f"Bearer {access_token_hubspot}"
