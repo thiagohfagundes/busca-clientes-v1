@@ -276,19 +276,21 @@ def login(email, password):
         return None
 
 def login_page():
-    st.subheader("Login")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    col1, col2, col3 = st.columns([1,3,1])
+    with col2:
+        st.subheader("Login")
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
 
-    if st.button("Login"):
-        user = login(email, password)
-        if user:
-            st.success("Login realizado com sucesso!")
-            st.session_state["authenticated"] = True
-            st.session_state["show_login_modal"] = False
-            st.rerun()
-        else:
-            st.error("Erro no login. Verifique suas credenciais.")
+        if st.button("Login"):
+            user = login(email, password)
+            if user:
+                st.success("Login realizado com sucesso!")
+                st.session_state["authenticated"] = True
+                st.session_state["show_login_modal"] = False
+                st.rerun()
+            else:
+                st.error("Erro no login. Verifique suas credenciais.")
 
 
 def main():

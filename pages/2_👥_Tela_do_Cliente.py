@@ -14,6 +14,9 @@ url_supabase = st.secrets["url_supabase"]
 key_supabase = st.secrets["key_supabase"]
 api_key_zendesk = st.secrets['api_key_zendesk']
 
+# Initialize Supabase client
+supabase: Client = create_client(url_supabase, key_supabase)
+
 headers_hubspot = {
     'Content-Type': 'application/json',
     'Authorization': f"Bearer {access_token_hubspot}"
@@ -376,19 +379,21 @@ def login(email, password):
         return None
 
 def login_page():
-    st.subheader("Login")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    col1, col2, col3 = st.columns([1,3,1])
+    with col2:
+        st.subheader("Login")
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
 
-    if st.button("Login"):
-        user = login(email, password)
-        if user:
-            st.success("Login realizado com sucesso!")
-            st.session_state["authenticated"] = True
-            st.session_state["show_login_modal"] = False
-            st.rerun()
-        else:
-            st.error("Erro no login. Verifique suas credenciais.")
+        if st.button("Login"):
+            user = login(email, password)
+            if user:
+                st.success("Login realizado com sucesso!")
+                st.session_state["authenticated"] = True
+                st.session_state["show_login_modal"] = False
+                st.rerun()
+            else:
+                st.error("Erro no login. Verifique suas credenciais.")
 
 
 def main():
