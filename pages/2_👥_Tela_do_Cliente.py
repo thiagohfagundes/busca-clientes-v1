@@ -223,17 +223,17 @@ def main_page():
             st.markdown(f"**CNPJ/CPF:** {cliente['st_cgc_sac']}")
             st.markdown(f"**Endereço:** {cliente['endereco']} {cliente['st_cidade_sac']} - {cliente['st_estado_sac']}")
 
-            print(cliente['st_telefone_sac'])
-            type(cliente['st_telefone_sac'])
-            ddd = int(cliente['st_ddd_sac'])
-            telefone = int(cliente['st_telefone_sac'])
-            if telefone is not None and not math.isnan(telefone):
-                if ddd is not None and not math.isnan(ddd):
-                    st.markdown(f"**Telefone principal:** ({ddd}) {telefone}")
+            ddd = cliente['st_ddd_sac']
+            telefone = cliente['st_telefone_sac']
+
+            if telefone != '':
+                if telefone is not None and not math.isnan(telefone):
+                    if ddd is not None and not math.isnan(ddd):
+                        st.markdown(f"**Telefone principal:** ({ddd}) {telefone}")
+                    else:
+                        st.markdown(f"**Telefone principal:** {telefone} (sem DDD)")
                 else:
-                    st.markdown(f"**Telefone principal:** {telefone} (sem DDD)")
-            else:
-                st.markdown("**Telefone principal:** Dados indisponíveis")
+                    st.markdown("**Telefone principal:** Dados indisponíveis")
 
             empresas_hubspot = trata_listas(cliente['hs_object_id'])
             st.markdown("##### Empresa(s) Hubspot:")
