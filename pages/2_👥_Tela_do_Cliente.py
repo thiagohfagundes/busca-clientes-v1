@@ -382,6 +382,8 @@ def login_page():
     col1, col2, col3 = st.columns([1,3,1])
     with col2:
         with st.form("Login"):
+            st.subheader("Faça seu Login")
+            st.write("Caso não tenha acesso, solicite para thiago.fagundes@superlogica.com")
             email = st.text_input("Email")
             password = st.text_input("Password", type="password")
 
