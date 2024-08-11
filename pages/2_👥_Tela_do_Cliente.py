@@ -385,7 +385,7 @@ def login_page():
             email = st.text_input("Email")
             password = st.text_input("Password", type="password")
 
-            if st.button("Login"):
+            if st.form_submit_button("Login"):
                 user = login(email, password)
                 if user:
                     st.success("Login realizado com sucesso!")
