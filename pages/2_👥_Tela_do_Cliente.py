@@ -277,7 +277,7 @@ def main_page():
             if colunas_existentes:
                 # Filtrar o DataFrame com as colunas existentes
                 contatos_filtrados = contatos[colunas_existentes]
-                st.dataframe(contatos_filtrados, use_container_width=True, hide_index=True)
+                st.dataframe(contatos_filtrados, use_container_width=True)
 
         with tab2:
             st.subheader("Informações do cliente no Assinaturas")
