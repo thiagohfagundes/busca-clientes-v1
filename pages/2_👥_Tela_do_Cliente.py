@@ -39,6 +39,8 @@ headers_zendesk = {
 def trata_listas(string):
     if string == '[nan]':
         return []
+    elif string == 'nan':
+        return []
     else:
         # Converter string para lista
         lista = ast.literal_eval(string)
