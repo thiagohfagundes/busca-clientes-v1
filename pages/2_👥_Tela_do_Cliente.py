@@ -223,8 +223,8 @@ def main_page():
             st.markdown(f"**CNPJ/CPF:** {cliente['st_cgc_sac']}")
             st.markdown(f"**Endereço:** {cliente['endereco']} {cliente['st_cidade_sac']} - {cliente['st_estado_sac']}")
 
-            ddd = cliente['st_ddd_sac']
-            telefone = cliente['st_telefone_sac']
+            ddd = int(cliente['st_ddd_sac'])
+            telefone = int(cliente['st_telefone_sac'])
             if telefone is not None and not math.isnan(telefone):
                 if ddd is not None and not math.isnan(ddd):
                     st.markdown(f"**Telefone principal:** ({int(ddd)}) {int(telefone)}")
