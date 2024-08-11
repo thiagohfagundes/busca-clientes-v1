@@ -233,7 +233,7 @@ def main_page():
     # Formulário de busca
     with st.form(key='formulario'):
         st.header("Busca de clientes")
-        st.write("Busque seu cliente por Razão Social, Nome Fantasia, Licença, CNPJ (apenas números), E-mail (apenas números). É possível encontrar as informações com apenas parte da palavra na busca.")
+        st.write("Busque seu cliente por Razão Social, Nome Fantasia, Licença, CNPJ (apenas números), E-mail (ou domínio), telefone (apenas números). É possível encontrar as informações com apenas parte da palavra na busca.")
         busca = st.text_input("Busque seu cliente:")
         botao = st.form_submit_button(label="Buscar")
 
@@ -275,22 +275,23 @@ def login(email, password):
         st.error(f"Error: {e}")
         return None
 
-def login_page():
-    col1, col2, col3 = st.columns([1,3,1])
-    with col2:
-        st.subheader("Login")
-        email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
 
-        if st.button("Login"):
-            user = login(email, password)
-            if user:
-                st.success("Login realizado com sucesso!")
-                st.session_state["authenticated"] = True
-                st.session_state["show_login_modal"] = False
-                st.rerun()
-            else:
-                st.error("Erro no login. Verifique suas credenciais.")
+def login_page():
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        with st.form("Login"):
+            email = st.text_input("Email")
+            password = st.text_input("Password", type="password")
+
+            if st.button("Login"):
+                user = login(email, password)
+                if user:
+                    st.success("Login realizado com sucesso!")
+                    st.session_state["authenticated"] = True
+                    st.session_state["show_login_modal"] = False
+                    st.rerun()
+                else:
+                    st.error("Erro no login. Verifique suas credenciais.")
 
 
 def main():
